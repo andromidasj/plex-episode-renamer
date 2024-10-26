@@ -17,7 +17,7 @@ log(success("Starting..."));
 
 const DIR_TO_IGNORE = [".git", "node_modules", "@eaDir"];
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".tbn"];
-const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".avi", ".mov", "m4v"];
+const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".m4v", ".avi", ".mov"];
 
 const optionDefinitions = [
   {
