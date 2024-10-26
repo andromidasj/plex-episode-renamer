@@ -17,7 +17,7 @@ log(success("Starting..."));
 
 const DIR_TO_IGNORE = [".git", "node_modules", "@eaDir"];
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".tbn"];
-const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".avi", ".mov"];
+const VIDEO_EXTENSIONS = [".mp4", ".mkv", ".avi", ".mov", "m4v"];
 
 const optionDefinitions = [
   {
@@ -41,13 +41,13 @@ const optionDefinitions = [
 
 const options = commandLineArgs(optionDefinitions);
 
-options.verbose && logDivider("=");
-options.verbose && log(info("Options:"));
-
-options.verbose && log(info("CLI options:", options));
-
 const workingDirectory = path.resolve(process.cwd(), options.path);
-options.verbose && log(info("workingDirectory:", workingDirectory));
+if (options.verbose) {
+  logDivider("=");
+  log(info("Options:"));
+  log(info("CLI options:", JSON.stringify(options, null, 2)));
+  log(info("workingDirectory:", workingDirectory));
+}
 
 renameImagesInDirectory(workingDirectory);
 
@@ -175,13 +175,3 @@ function extractSeasonAndEpisode(str) {
     return null; // Return null if no match found
   }
 }
-
-// log(extractSeasonAndEpisode("s01e01"));
-// log(extractSeasonAndEpisode("s01 e01"));
-// log(
-//   extractSeasonAndEpisode(
-//     "For All Mankind (2019) - S02E01 - Every Little Thing [WEBRip-1080p][10bit][HEVC][EAC3 Atmos 5.1]-d3g"
-//   )
-// );
-// log(extractSeasonAndEpisode("For All Mankind (2019) - S2 E10"));
-// log(extractSeasonAndEpisode("For All Mankind (2019) S2"));
